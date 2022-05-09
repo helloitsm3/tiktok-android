@@ -1,7 +1,9 @@
 package com.example.movielist
 
+import android.content.Context
 import okhttp3.*
 import android.os.Bundle
+import android.util.Log
 import java.io.IOException
 import com.google.gson.GsonBuilder
 import androidx.appcompat.app.AppCompatActivity
@@ -10,12 +12,16 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private val apiKey = "3b547d87b9704c60b0e0c03ae26e5cd4"
+    private val filename = "myfile"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         MovieTypes.LATEST.fetchMovies()
+        save();
+        read();
+
     }
 
     private fun MovieTypes.fetchMovies() {
@@ -89,5 +95,31 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+    // save to local disk(currently overwrites the whole file)
+    private fun save(){
+        val context = this.applicationContext;
+        val files: Array<String> = context.fileList()
+
+        Log.i("fileList", files.count().toString() )
+
+        val fileContents = "Overriden"
+        this.applicationContext.openFileOutput(filename, Context.MODE_PRIVATE).use {
+            it.write(fileContents.toByteArray())
+        }
+    }
+    // read from local disk(currently only has one file
+    private fun read(){
+        val context = this.applicationContext;
+        context.openFileInput(filename).bufferedReader().useLines { lines ->
+            val i = lines.fold("") { some, text ->
+                "$some\n$text"
+            }
+            Log.i("fileList", i );
+
+        }
+
+
+        Log.i("fileList", context.fileList().count().toString() );
     }
 }
