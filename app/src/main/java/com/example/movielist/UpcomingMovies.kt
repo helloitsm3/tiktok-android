@@ -1,6 +1,6 @@
 package com.example.movielist
 
-class UpcomingMovies(
+class MovieResponse(
     val dates: dates,
     val page: Int,
     val results: List<Movie>,
@@ -26,3 +26,11 @@ class Movie (
     val vote_average: Float,
     val vote_count: Int
 )
+
+enum class MovieTypes {
+    LATEST,
+    NOW_PLAYING,
+    UPCOMING,
+    POPULAR,
+    TOP_RATED
+}
