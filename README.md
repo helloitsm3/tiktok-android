@@ -65,5 +65,6 @@ git clone with Github CLI     gh repo clone helloitsm3/tiktok-android
 
 ```sh
 1. Open the project in Android Studio
-2. Run the project
+2. Create a device under device manager
+3. Run the project with the created device
 ```
