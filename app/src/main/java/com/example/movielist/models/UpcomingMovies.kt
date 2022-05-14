@@ -1,6 +1,6 @@
 package com.example.movielist
 
-class MovieResponse(
+class MovieResponse2(
     val dates: dates,
     val page: Int,
     val results: List<Movie>,

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Movielist</string>
+    <string name="iv_notes">iv_notes</string>
+
+    <string-array name="movie_names">
+
+    </string-array>
 </resources>
