@@ -1,16 +1,11 @@
 package com.example.movielist
 
-import okhttp3.*
 import android.util.Log
 import android.os.Bundle
 import retrofit2.Callback
-import java.io.IOException
 import android.content.Context
 import android.content.Intent
-import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.example.movielist.models.PopularMovies
 import com.example.movielist.models.MovieResponse
 import com.example.movielist.services.MovieApiService
