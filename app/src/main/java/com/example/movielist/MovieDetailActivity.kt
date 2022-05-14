@@ -23,7 +23,7 @@ class MovieDetailActivity : AppCompatActivity() {
             singleMovie_ratings.text = movie.movie_vote
             singleMovie_description.text = movie.movie_overview
             singleMovie_releaseDate.text = movie.movie_release_date
+            singleMovie_language.text = movie.original_language
         }
-
     }
 }

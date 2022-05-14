@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                override fun onFailure(call: Call, e: IOException) {
-//                    println("Failed to execute request")
 //                }
 //            })
 //        } else if (type == "top_rated" || type == "popular") {
@@ -116,7 +115,6 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                fun onFailure(call: Call, e: IOException) {
-//                    println("Failed to execute request")
 //                }
 //            })
 //        } else if (type == "latest") {
@@ -135,7 +133,6 @@ class MainActivity : AppCompatActivity() {
 //                }
 //
 //                fun onFailure(call: Call, e: IOException) {
-//                    println("Failed to execute request")
 //                }
 //            })
 //        }

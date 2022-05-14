@@ -12,26 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Movielist">
 
-        <activity android:name=".LoadingScreenActivity"
+        <activity
+            android:name=".LoadingScreenActivity"
             android:exported="true"
             android:theme="@style/LoadingScreenTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MovieDetailActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

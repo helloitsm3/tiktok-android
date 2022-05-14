@@ -24,6 +24,8 @@ data class PopularMovies(
     @SerializedName("overview")
     val movie_overview: String?,
 
+    @SerializedName("original_language")
+    val original_language: String?
 
 ) : Parcelable{
 }
