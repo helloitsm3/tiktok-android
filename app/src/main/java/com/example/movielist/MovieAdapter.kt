@@ -25,6 +25,9 @@ class MovieAdapter(
                 if (itemView.context is MainActivity) {
                     (itemView.context as MainActivity).openDetailActivity(popularMovies)
                 }
+                else if (itemView.context is FavouriteActivity) {
+                    (itemView.context as FavouriteActivity).openDetailActivity(popularMovies)
+                }
             }
         }
     }

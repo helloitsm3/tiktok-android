@@ -1,11 +1,16 @@
 package com.example.movielist
 
+import okhttp3.*
 import android.util.Log
 import android.os.Bundle
 import retrofit2.Callback
+import java.io.IOException
 import android.content.Context
 import android.content.Intent
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movielist.models.PopularMovies
 import com.example.movielist.models.MovieResponse
 import com.example.movielist.services.MovieApiService
@@ -16,24 +21,36 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class FavouriteActivity : AppCompatActivity() {
     private val filename = "myfile"
     private val apiKey = "15df731b1aeaea1d78e2fd0bf2011e2a"
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_favourite)
 
-        favourite_page_button.setOnClickListener{
-            openFavouriteActivity()
-        }
+
         rv_movies_list.layoutManager = LinearLayoutManager(this)
         rv_movies_list.setHasFixedSize(true)
+        val fav = HashSet(prefs.favPref)
         fetchMovieData { popularMovies: List<PopularMovies> ->
-            rv_movies_list.adapter = MovieAdapter(popularMovies)
-        }
 
+                 val p = popularMovies.filter {fav.contains(it.movie_id!!)}
+            rv_movies_list.adapter = MovieAdapter(p)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        rv_movies_list.layoutManager = LinearLayoutManager(this)
+        rv_movies_list.setHasFixedSize(true)
+        val fav = HashSet(prefs.favPref)
+        fetchMovieData { popularMovies: List<PopularMovies> ->
+
+            val p = popularMovies.filter {fav.contains(it.movie_id!!)}
+            rv_movies_list.adapter = MovieAdapter(p)
+        }
     }
 
     fun openDetailActivity(popularMovies: PopularMovies) {
@@ -42,33 +59,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun openFavouriteActivity() {
-        val intent = Intent(this, FavouriteActivity::class.java)
+        val intent = Intent(this, MovieDetailActivity::class.java)
         startActivity(intent)
-    }
-
-    // save to local disk(currently overwrites the whole file)
-    private fun save(){
-        val context = this.applicationContext;
-        val files: Array<String> = context.fileList()
-
-        Log.i("fileList", files.count().toString() )
-
-        val fileContents = "Overriden"
-        this.applicationContext.openFileOutput(filename, Context.MODE_PRIVATE).use {
-            it.write(fileContents.toByteArray())
-        }
-    }
-    // read from local disk(currently only has one file
-    private fun read(){
-        val context = this.applicationContext;
-        context.openFileInput(filename).bufferedReader().useLines { lines ->
-            val i = lines.fold("") { some, text ->
-                "$some\n$text"
-            }
-            Log.i("fileList", i );
-        }
-
-        Log.i("fileList", context.fileList().count().toString() );
     }
 
 private fun fetchMovieData(callback: (List<PopularMovies>) -> Unit) {

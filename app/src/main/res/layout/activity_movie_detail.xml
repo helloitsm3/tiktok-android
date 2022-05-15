@@ -158,6 +158,16 @@
 <!--            android:textColor="#000000"-->
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toBottomOf="@+id/textView4" />-->
-
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_star_big_off"
+                    android:id="@+id/toggle_favourite_btn"
+                    android:text="+"
+                    app:icon="@android:drawable/btn_star_big_on"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.831"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
