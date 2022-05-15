@@ -46,30 +46,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    // save to local disk(currently overwrites the whole file)
-    private fun save(){
-        val context = this.applicationContext;
-        val files: Array<String> = context.fileList()
-
-        Log.i("fileList", files.count().toString() )
-
-        val fileContents = "Overriden"
-        this.applicationContext.openFileOutput(filename, Context.MODE_PRIVATE).use {
-            it.write(fileContents.toByteArray())
-        }
-    }
-    // read from local disk(currently only has one file
-    private fun read(){
-        val context = this.applicationContext;
-        context.openFileInput(filename).bufferedReader().useLines { lines ->
-            val i = lines.fold("") { some, text ->
-                "$some\n$text"
-            }
-            Log.i("fileList", i );
-        }
-
-        Log.i("fileList", context.fileList().count().toString() );
-    }
 
 private fun fetchMovieData(callback: (List<PopularMovies>) -> Unit) {
     val apiService = MovieApiService.getInstance().create(MovieApiInterface::class.java)
